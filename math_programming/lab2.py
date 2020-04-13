@@ -132,6 +132,6 @@ b_u = np.array([24, 12, 35])
 sign = ['<=', '<=', '<=', '<=']
 c = np.array([4, 2, 5, 8])
 
-simplex(A_u, b_u, sign, c)
-inner_solution = linprog(-c, A_u, b_u, method='simplex')
-print(f'Минимальное значение x: {inner_solution.x}\nОптимальное решение: {-inner_solution.fun}')
+# simplex(A_u, b_u, sign, c)
+# inner_solution = linprog(-c, A_u, b_u, method='simplex')
+# print(f'Минимальное значение x: {inner_solution.x}\nОптимальное решение: {-inner_solution.fun}')
