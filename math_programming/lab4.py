@@ -235,37 +235,29 @@ class Gomori:
             return 0
 
         row = self.table.values[q, :]
-        flag = False
-        for value in row:
-            if value - np.floor(value) != 0:
-                flag = True
-                break
-        if flag:
-            row = list(map(lambda x: (x - np.floor(x)) * -1, row))
-            row.append(1)
-            row[-1], row[-2] = row[-2], row[-1]
+        row = list(map(lambda x: (x - np.floor(x)) * -1, row))
+        row.append(1)
+        row[-1], row[-2] = row[-2], row[-1]
 
-            new_x_col = np.zeros((size[0], 1))
-            new_x = 'x' + str(size[1])
-            self.table[new_x] = new_x_col
-            cols = list(self.table.columns)
-            a, b = cols.index(new_x), cols.index('b')
-            cols[b], cols[a] = cols[a], cols[b]
-            self.table = self.table[cols]
-            self.table.loc[new_x] = row
-            self.table.loc[new_x], self.table.loc['Z'] = self.table.loc['Z'], row
+        new_x_col = np.zeros((size[0], 1))
+        new_x = 'x' + str(size[1])
+        self.table[new_x] = new_x_col
+        cols = list(self.table.columns)
+        a, b = cols.index(new_x), cols.index('b')
+        cols[b], cols[a] = cols[a], cols[b]
+        self.table = self.table[cols]
+        self.table.loc[new_x] = row
+        self.table.loc[new_x], self.table.loc['Z'] = self.table.loc['Z'], row
 
-            self._index_arr.append(new_x)
-            self._index_arr[-1], self._index_arr[-2] = self._index_arr[-2], self._index_arr[-1]
-            self.table.set_axis(self._index_arr, axis=0, inplace=True)
+        self._index_arr.append(new_x)
+        self._index_arr[-1], self._index_arr[-2] = self._index_arr[-2], self._index_arr[-1]
+        self.table.set_axis(self._index_arr, axis=0, inplace=True)
 
-            self._column_arr = self.table.columns.values
-            self.res = [0 for i in range(0, len(self._column_arr) - 1)]
+        self._column_arr = self.table.columns.values
+        self.res = [0 for i in range(0, len(self._column_arr) - 1)]
 
-            print(self.table)
-            return 1
-        else:
-            return -1
+        print(self.table)
+        return 1
 
     # Поиск решения
     def solve(self):
