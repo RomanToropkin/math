@@ -284,11 +284,11 @@ class Gomori:
                 break
 
 
-A = np.array([[3,2,1],
-              [1,4,1],
-              [3,3,1]])
-b = np.array([10,11,13])
-c = np.array([4,5,1])
+A = np.array([[-6,-4],
+              [-3,3],
+              [1,-3]])
+b = np.array([20,9,-3])
+c = np.array([-2,1])
 sign = ['<=','<=','<=']
 
 gomori = Gomori(A, b, c, sign, False)
